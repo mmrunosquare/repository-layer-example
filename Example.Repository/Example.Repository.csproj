@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Example.DAL\Example.DAL.csproj" />
-    <ProjectReference Include="..\Example.Repository\Example.Repository.csproj" />
   </ItemGroup>
 
 </Project>

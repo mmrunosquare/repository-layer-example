@@ -1,50 +1,35 @@
 ﻿using Example.Business.Interfaces.Services;
 using Example.DAL.Database;
 using Example.DAL.Interfaces.Contexts;
+using Example.Repository.Interfaces;
 namespace Example.Business.Services;
 
-public class UserService(ICoreDatabase coreDatabase) : IUserService
+public class UserService(IUserRepository repository) : IUserService
 {
     public User CreateUser(User user)
     {
-        coreDatabase.User.Add(user);
+        var newUser = repository.CreateUser(user);
         return user;
     }
 
     public bool DeleteUser(int id)
     {
-        var user = coreDatabase.User.FirstOrDefault(x => x.Id == id);
-        if (user == null)
-        {
-            return false;
-        }
-        coreDatabase.User.Remove(user);
-        return true;
+        return repository.DeleteUser(id);
     }
 
     public User GetUser(int id)
     {
-        return coreDatabase.User.FirstOrDefault(x => x.Id == id);
+        return repository.GetUser(id);
     }
 
     public List<User> GetUsers()
     {
-        return coreDatabase.User.ToList();
+        return repository.GetUser();
     }
 
     public User UpdateUser(User user)
     {
-        var existingUser = coreDatabase.User.FirstOrDefault(x => x.Id == user.Id);
-        if (existingUser == null)
-        {
-            return null;
-        }
-        existingUser.Name = user.Name;
-        existingUser.Email = user.Email;
-        existingUser.Password = user.Password;
-        existingUser.Role = user.Role;
-        existingUser.IsActive = user.IsActive;
-        existingUser.UpdatedAt = DateTime.Now;
-        return existingUser;
+        var updatedUser = repository.UpdateUser(user);
+        return updatedUser;
     }
 }
