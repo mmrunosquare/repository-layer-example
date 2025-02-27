@@ -1,11 +1,6 @@
 # repository-layer-example
 An example of how a new layer in our proyect would make our lives better
 
-Here is the complete **Markdown file in English** so you can add it to your `README.md` in your repository. 🚀
-
----
-
-### 📌 **Full `README.md` Content in Markdown:**
 ```md
 # 🚀 Why Use the Repository Pattern in a 3-Layer Architecture?
 
